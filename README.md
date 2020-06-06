@@ -6,8 +6,8 @@
   If the query has been run before, Maevis will retrieve the resultset from the Cache Database and send it back to your client.
 
 ## REQUIREMENTS:
-* Vertica DB - This is the querying/target Database. (Postgres in Progress).
-* DynamoDB - This is the where cached-results are stored.There is a setting to run the cache in memory, but features will be more limited (ie, clearing specific cached queries when a table is updated).
+* Vertica DB - This is the querying/target Database. (Postgres WIP).
+* DynamoDB - This is the where cached-results are stored. There is a setting to run the cache in memory, but features will be more limited (ie, clearing specific cached queries when a table is updated).
 
 
 ## UTILIZATION:
