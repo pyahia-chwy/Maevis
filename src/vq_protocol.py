@@ -44,7 +44,6 @@ class ServerProtocol(protocol.Protocol):
         if msg:
             self.sp_data[1].append(data)
             if data[-2:] in (_END_PATTERN, _END_JDBC_PATTERN):  
-                print(len(str(self.sp_data[1]).encode()))
                 if len(str(self.sp_data[1]).encode()) < _MAX_RESULT_SIZE:
                     query_cache.write_to_cache(msg, self.sp_data[1])
                 
