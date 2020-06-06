@@ -1,9 +1,11 @@
 from twisted.internet import protocol, reactor
 from vertica_wire_handler import VerticaWireHandler
 from query_cache import QueryCache
-from constants import HOST, TARGET_PORT, _END_PATTERN, _REQUEST_ORD,_END_JDBC_PATTERN
+from constants import HOST, TARGET_PORT, _END_PATTERN, _REQUEST_ORD,_END_JDBC_PATTERN, MAX_RESULT_SIZE
 
 query_cache = QueryCache()
+
+_MAX_RESULT_SIZE = MAX_RESULT_SIZE if MAX_RESULT_SIZE < 380000 else 380000
 
 class ServerProtocol(protocol.Protocol):
     
@@ -20,12 +22,9 @@ class ServerProtocol(protocol.Protocol):
         reactor.connectTCP(HOST, TARGET_PORT, self.client_factory)
 
     def dataReceived(self, data):
-        print(data)
         if (self.client != None):
             if data[0] == _REQUEST_ORD:
                 msg = VerticaWireHandler(data)
-                print(msg.key)
-               # print(data)
                 self.sp_data = [msg, []]
                 if msg.key in query_cache.cache_keys:
                     print("Reading from Cache...")
@@ -45,7 +44,9 @@ class ServerProtocol(protocol.Protocol):
         if msg:
             self.sp_data[1].append(data)
             if data[-2:] in (_END_PATTERN, _END_JDBC_PATTERN):  
-                query_cache.write_to_cache(msg, self.sp_data[1])
+                print(len(str(self.sp_data[1]).encode()))
+                if len(str(self.sp_data[1]).encode()) < _MAX_RESULT_SIZE:
+                    query_cache.write_to_cache(msg, self.sp_data[1])
                 
         self.transport.write(data)
         

@@ -1,8 +1,12 @@
 import boto3
 from ast import literal_eval
 from botocore.exceptions import ClientError
-from constants import CACHE_TABLE_NAME, QUERY_CACHE_NAME
-
+from constants import (
+    CACHE_TABLE_NAME, QUERY_CACHE_NAME, QUERY_CACHE_NAME_WRITE_THROUGHPUT, 
+    QUERY_CACHE_NAME_READ_THROUGHPUT,
+    CACHE_TABLE_NAME_WRITE_THROUGHPUT,
+    CACHE_TABLE_NAME_READ_THROUGHPUT
+)
 
 class DydbRequestManager:
     
@@ -78,8 +82,8 @@ class DydbRequestManager:
                 
             ],
             ProvisionedThroughput={
-                'ReadCapacityUnits': 2,
-                'WriteCapacityUnits': 2
+                'ReadCapacityUnits': CACHE_TABLE_NAME_READ_THROUGHPUT,
+                'WriteCapacityUnits': CACHE_TABLE_NAME_WRITE_THROUGHPUT
             }
         )
         return response
@@ -98,25 +102,16 @@ class DydbRequestManager:
                     'AttributeName': 'request_key',
                     'KeyType': 'HASH'
                 },
-                #   {
-                #     'AttributeName': 'message',
-                #     'KeyType': 'RANGE'
-                # },
             ],
             AttributeDefinitions= [
                 {
                     'AttributeName': 'request_key',
                     'AttributeType': 'S'
-                },
-                #   {
-                #     'AttributeName': 'message',
-                #     'AttributeType': 'S'
-                # },
-                
+                },            
             ],
             ProvisionedThroughput={
-                'ReadCapacityUnits': 2,
-                'WriteCapacityUnits': 2
+                'ReadCapacityUnits': QUERY_CACHE_NAME_READ_THROUGHPUT,
+                'WriteCapacityUnits': QUERY_CACHE_NAME_WRITE_THROUGHPUT
             }
         )
         return response
