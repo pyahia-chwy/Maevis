@@ -32,5 +32,5 @@
 #### Notes:
 * A query will only read from the Cache Database if the Query is identical to a previously executed query (i.e, changing a table alias on the query will result in re-reading from the target DB rather than the Cache DB).
 * Maevis will only cache results that are less < 380KB as this is only intended to store data from expensive aggregated data.
-
+* If the cache server is slower than expectations or unexpectedly fails on large reads or high usage, consider upping the AWS throughput (in ./constants.py).
 
