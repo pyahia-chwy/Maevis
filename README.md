@@ -5,10 +5,12 @@
 * DynamoDB - This is the where cached-results are stored.There is a setting to run the cache in memory, but features will be more limited (ie, clearing specific cached queries when a table is updated).
 
 
-## SETTINGS:
+## UTILIZATION:
+
+#### Settings
 * Paramaters are read from ./constants.py. This is where configurations for target host:port, local port, & AWS Credentails are read form.
 
-#### Utilization
+#### Running
 * Run ./service.py
 * Connect your client to the host ./service.py is running from and the LOCAL_POST from ./constants.py.
 
