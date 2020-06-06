@@ -18,7 +18,7 @@
 * Cache is cleared whenever the ./service.py restarts.
 
 #### Clearing individual items
-When a query is written to the cache, tables/views from the Query are written to a seperate table (`from constants import CACHE_TABLE_NAME`. This table stores each table used in the query along with the cache_key (FK to the query_cache table `from constants import QUERY_CACHE_NAME` )
+When a query is written to the cache, tables/views from the Query are written to a seperate table (`from constants import CACHE_TABLE_NAME`). This table stores each table used in the query along with the cache_key (FK to the query_cache table `from constants import QUERY_CACHE_NAME` )
 
 To remove an item from the cache (ie, at the end of an ETL job) read the cache_keys from the `cache_table` table (scanning based on the table that is refreshed) and delete those keys from the `query_cache` table. 
 
