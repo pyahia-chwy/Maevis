@@ -1,7 +1,7 @@
 
 
 #CUSTOMIZABLE
-HOST = 'bidbdev01.chewy.local' #Vertica DB Server
+HOST = '' #Vertica DB Server
 TARGET_PORT = 5433 #Database Port
 LOCAL_PORT = 7432 #Proxy; Port ODBC/JDBC would connect to
 _CACHE_LOCATION = 'NOSQL' #|'MEMORY'
