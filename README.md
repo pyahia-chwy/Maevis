@@ -8,7 +8,7 @@
 ## UTILIZATION:
 
 #### Settings
-* Paramaters are read from ./constants.py. This is where configurations for target host:port, local port, & AWS Credentails are read form.
+* Paramaters are read from ./constants.py. This is where configurations for target host:port, local port, & AWS Credentails are read from. Edit these as needed.
 
 #### Running
 * Run ./service.py
