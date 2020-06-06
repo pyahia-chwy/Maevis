@@ -1,5 +1,10 @@
 # Maevis
 
+## OVERVIEW:
+    Maevis is a service that runs as a Proxy to your target Vertica database. When a query is executed against Maevis, Maevis first checks it's query cache to see if the query has been run before. 
+    If the query has not been run, it is executed against the target Vertica database--the resultset is sent back to your client and stored in a Cache Database.
+    If the query has been run before, Maevis will retrieve the resultset from the Cache Database and send it back to you client.
+
 ## REQUIREMENTS:
 * Vertica DB - This is the querying/target Database. (Postgres in Progress).
 * DynamoDB - This is the where cached-results are stored.There is a setting to run the cache in memory, but features will be more limited (ie, clearing specific cached queries when a table is updated).
