@@ -22,5 +22,7 @@ When a query is written to the cache, tables/views from the Query are written to
 
 To remove an item from the cache (ie, at the end of an ETL job) read the cache_keys from the `cache_table` table (scanning based on the table that is refreshed) and delete those keys from the `query_cache` table. 
 
+#### Notes:
+* A query will only read from the Cache Database if the Query is identical to a previously executed query (i.e, changing a table alias on the query will result in re-reading from the target database rather tahn the cache).
 
 
