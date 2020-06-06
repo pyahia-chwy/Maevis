@@ -12,7 +12,7 @@
 
 #### Running
 * Run ./service.py
-* Connect your client to the host ./service.py is running from and the LOCAL_POST from ./constants.py.
+* Connect your client to the host ./service.py is running from on the LOCAL_PORT from ./constants.py.
 
 #### Clearing Full Cache
 * Cache is cleared whenever the ./service.py restarts.
