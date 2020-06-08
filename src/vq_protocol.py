@@ -27,7 +27,6 @@ class ServerProtocol(protocol.Protocol):
                 msg = VerticaWireHandler(data)
                 self.sp_data = [msg, []]
                 if msg.key in query_cache.cache_keys:
-                    print("Reading from Cache...")
                     for message in query_cache.cache_access(msg.key):
                         self.transport.write(message) #from Server Factory Write to Server
                 else:
